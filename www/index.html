@@ -1,0 +1,1203 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="lib/onsen/css/onsenui.css"/>
+    <link rel="stylesheet" href="lib/onsen/css/old-onsen-css-components.min.css"/>
+    
+    <link rel="stylesheet" href="css/app.css?ver=1.0">
+	<link href="lib/mobiscroll/css/mobiscroll.frame.css" rel="stylesheet" type="text/css" />
+	<link href="lib/mobiscroll/css/mobiscroll.frame.android.css" rel="stylesheet" type="text/css" />
+	<link href="lib/mobiscroll/css/mobiscroll.frame.android-holo.css" rel="stylesheet" type="text/css" />
+	<link href="lib/mobiscroll/css/mobiscroll.frame.ios-classic.css" rel="stylesheet" type="text/css" />
+	<link href="lib/mobiscroll/css/mobiscroll.frame.ios.css" rel="stylesheet" type="text/css" />
+	<link href="lib/mobiscroll/css/mobiscroll.scroller.css" rel="stylesheet" type="text/css" />
+	<link href="lib/mobiscroll/css/mobiscroll.scroller.android.css" rel="stylesheet" type="text/css" />
+	<link href="lib/mobiscroll/css/mobiscroll.scroller.android-holo.css" rel="stylesheet" type="text/css" />
+	<link href="lib/mobiscroll/css/mobiscroll.scroller.ios-classic.css" rel="stylesheet" type="text/css" />
+	<link href="lib/mobiscroll/css/mobiscroll.scroller.ios.css" rel="stylesheet" type="text/css" />
+	<link href="lib/mobiscroll/css/mobiscroll.android-holo-light.css" rel="stylesheet" type="text/css" />
+	
+	<link rel="stylesheet" href="lib/fullcalendar/fullcalendar.css"/>	
+	        
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/onsen/js/onsenui.js"></script> 
+    <script src="lib/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+           
+    <script src="lib/mobiscroll/js/mobiscroll.core.js"></script>
+    <script src="lib/mobiscroll/js/mobiscroll.frame.js"></script>
+    <script src="lib/mobiscroll/js/mobiscroll.scroller.js"></script>
+    <script src="lib/mobiscroll/js/mobiscroll.util.datetime.js"></script>
+    <script src="lib/mobiscroll/js/mobiscroll.datetimebase.js"></script>
+    <script src="lib/mobiscroll/js/mobiscroll.datetime.js"></script>
+    <script src="lib/mobiscroll/js/mobiscroll.frame.android-holo.js"></script>
+    
+    
+    <script src="lib/jquery.translate.js"></script>
+    <script src="lib/imagesloaded.pkgd.min.js"></script>
+    <script src="js/jquery.geocomplete.min.js"></script>
+    
+    <script src="lib/jsignature/jSignature.min.js"></script>   
+    <script src="lib/fullcalendar/moment.min.js"></script>
+    <script src="lib/fullcalendar/fullcalendar.min.js"></script>
+    <script src="lib/validate.min.js"></script>
+    
+    <link href="lib/intel/build/css/intlTelInput.css" rel="stylesheet" type="text/css" />
+   <script type="text/javascript" src="lib/intel/build/js/intlTelInput.js"></script>
+   
+   <script src="http://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyDKKhodQxKLRD1dv0nMQNaamKQQxYove3U"></script>
+   <script src="lib/gmaps.js?version=1.0.0"></script>
+   
+   <script src="lib/leaflet/leaflet.js"></script>
+   <link href="lib/leaflet/leaflet.css" rel="stylesheet" type="text/css" />
+   
+   <script src="lib/leaflet/plugin/routing/leaflet-routing-machine.min.js"></script>
+   <link href="lib/leaflet/plugin/routing/leaflet-routing-machine.css" rel="stylesheet" type="text/css" />
+   
+    
+    <script src="js/config.js?ver=1.0"></script>
+    <script src="js/tpl.js?ver=1.0"></script>    
+    <script src="js/app.js?ver=1.0"></script> 
+    <script src="js/mapbox.js?ver=1.0"></script> 
+             
+  </head>
+  <body>
+    
+
+   <ons-modal id="loader">
+     <ons-progress-circular indeterminate></ons-progress-circular>
+   </ons-modal>
+
+     <ons-navigator id="kNavigator" page="pageGetSettings.html"></ons-navigator>            
+    
+     <ons-template id="pageGetSettings.html"> 
+      <ons-page id="pageGetSettings" modifier="login-page" >
+      
+          <div class="loading-getsettings">
+	           <img src="images/logo.png" alt="" title="">
+	           <p>
+	           <span class="trn loading_settings" data-trn-key="loading_settings" >
+	           Loading Settings</span> ...
+	           </p>
+	           <p class="refresh_net">
+	            <ons-button modifier="quiet" onclick="refreshCon('GetAppSettings')">
+                  <ons-icon icon="ion-android-refresh" size="30px"></ons-icon>
+                </ons-button>
+	           </p>
+           </div>    
+           
+      </ons-page>    
+     </ons-template>  
+      
+     <ons-template id="pagelogin.html"> 
+      <ons-page id="pageLogin" modifier="login-page" ng-device-backbutton="closeApp()" >
+             
+       <div class="home-header login-header">
+          <span class="trn" data-trn-key="signin" >Sign In</span>
+       </div> 
+       
+       <div class="inner">
+       <form id="frm-login" class="frm" method="post" onsubmit="return false;">
+       
+           <p class="field-wrap">
+           <ons-input type="text" name="username" id="username_field"  class="username_field"          
+           modifier="underbar" placeholder="Username" data-trn-key="username" float></ons-input>
+           </p>
+                                 
+           <p class="field-wrap">
+           <ons-input type="password" name="password" modifier="underbar" class="password_field" 
+           placeholder="Password" data-trn-key="password" float ></ons-input>
+           </p>
+           
+           <p class="text-left">     
+             <ons-row>      
+                <ons-col width="30px">
+                   <!--<ons-input type="checkbox" name="remember" checked input-id="check-1"></ons-input> -->    
+                    <ons-checkbox input-id="remember" name="remember" checked ></ons-checkbox>
+                </ons-col>  
+                <ons-col>
+                  <span class="trn" data-trn-key="remember_me" >Remember me</span>
+                </ons-col>  
+              </ons-row>
+           </p>
+           
+           <p class="text-left"">
+            <ons-if platform="android">
+	           <ons-button modifier="large" onclick="login()" >
+	           <span class="trn" data-trn-key="signin">Sign In</span>
+	           </ons-button>          
+	        </ons-if>
+	        <ons-if platform="ios other">
+	           <ons-button modifier="large green-button" onclick="login()" >
+	           <span class="trn" data-trn-key="signin">Sign In</span>
+	           </ons-button>          
+	        </ons-if>
+           </p>              
+               
+           <ons-row>
+            <ons-col>
+             <p class="text-left">
+	            <ons-if platform="android">
+	              <ons-button modifier="quiet" onclick="showPage('forgotpass.html');">
+	                <span class="trn" data-trn-key="forgot_password" >Forgot Password?</span>
+	              </ons-button>
+	            </ons-if>
+	            
+	            <ons-if platform="ios other">
+	              <ons-button modifier="quiet" onclick="showPage('forgotpass.html');">
+	                <span class="trn white-text" data-trn-key="forgot_password" >Forgot Password?</span>
+	              </ons-button>
+	            </ons-if>                       
+	           </p>
+            </ons-col>
+            
+            <ons-col>
+             <p class="text-right sign-wrap">
+             <ons-button modifier="quiet" onclick="showPage('signup.html');">
+                <span class="trn" data-trn-key="signup" >Sign Up</span>
+             </ons-button>
+             </p>
+            </ons-col>
+           
+           </ons-row>
+           
+           </form>    
+                      
+           <div class="auto-login-wrap">
+	           <img src="images/logo.png" alt="" title="">
+	           <p>
+	           <span class="trn" data-trn-key="login_in" >Logging in</span> ...
+	           </p>
+           </div>
+                 
+       </div>
+              
+      </ons-page>    
+      </ons-template>
+    
+         
+    <ons-template id="forgotpass.html"> 
+    <ons-page id="pageforgotpass" modifier="login-page"  >
+    
+       <ons-toolbar modifier="ktransparent-toolbar">        
+         <div class="left"><ons-back-button></ons-back-button></div>          
+       </ons-toolbar>
+    
+       <div class="home-header">
+          <span class="trn" data-trn-key="forgot_password">Forgot Password</span>
+       </div> 
+                     
+       <div class="inner">   
+       
+         <p class="text-left field-wrap">
+           <span class="trn" data-trn-key="enter_your_email">
+           Enter your email address and we'll send you a code to reset your password
+           </span>
+         </p>  
+       
+          <form id="frm-forgotpass"  method="post" onsubmit="return false;"> 
+          <p class="field-wrap">
+           <ons-input type="text" id="email_field" name="email" modifier="underbar" class="email_field"
+            placeholder="Email" data-trn-key="email" float></ons-input>
+          </p>          
+          
+          <p class="text-left"">
+            <ons-if platform="android">  
+             <ons-button modifier="large" onclick="forgotPass()"  >
+              <span class="trn" data-trn-key="submit" >Submit</span>
+             </ons-button>
+            </ons-if>
+            
+            <ons-if platform="ios other">
+             <ons-button modifier="large green-button" onclick="forgotPass()"  >
+              <span class="trn" data-trn-key="submit" >Submit</span>
+             </ons-button>
+            </ons-if>
+            
+          </p>
+          </form>
+          
+          <p class="text-left">
+          
+            <ons-if platform="android">
+		        <ons-button modifier="quiet" onclick="showChangePassword()">
+		        <span class="trn" data-trn-key="already_have_password" >Already have Password Code?</span>
+		        </ons-button>
+            </ons-if>
+            
+            <ons-if platform="ios other">
+		        <ons-button modifier="quiet" onclick="showChangePassword()">
+		        <span class="trn white-text" data-trn-key="already_have_password" >Already have Password Code?</span>
+		        </ons-button>
+            </ons-if>
+            
+          </p>
+          
+       </div>
+    
+    </ons-page>    
+    </ons-template>
+    
+    
+    <ons-template id="changePassword.html">
+      <ons-dialog id="dialogChangePass" cancelable > 
+              
+        <form id="frm-changepass"  method="post" onsubmit="return false;"> 
+        <div class="inner">
+           <p class="field-wrap">
+             <ons-input type="text" name="email_address"  class="email_field"           
+              modifier="underbar" placeholder="Email" data-trn-key="email"  float></ons-input>
+           </p>
+           <p class="field-wrap">
+             <ons-input type="text" name="code"  class="code_field"          
+              modifier="underbar" placeholder="Code" data-trn-key="code" float></ons-input>
+           </p>
+           
+           <p class="field-wrap">
+             <ons-input type="password" name="newpass"  class="new_password_field"
+              modifier="underbar" placeholder="New Password" data-trn-key="new_password" float></ons-input>
+           </p>
+           
+           <p class="text-left"">
+           <ons-button modifier="large" onclick="changePassword()" >
+           <span class="trn" data-trn-key="submit">Submit</span>
+           </ons-button>          
+           </p>       
+           
+        </div>
+        </form>
+      
+      </ons-dialog>
+    </ons-template>
+    
+    
+    <ons-template id="home.html"> 
+    <ons-page id="home" modifier="grey-page" >
+    
+    <ons-toolbar modifier="toolbar-noshadow">        
+        <div class="left">        
+           <span class="app-title" >Chow Now Now Rider</span>           
+        </div>
+        <div class="center text-right">        
+        
+          <ons-toolbar-button onclick="showPage('Notification.html')" >
+             <div class="notification baloon-notification">4</div>
+            <ons-icon icon="ion-ios-bell-outline" size="30px"></ons-icon>            
+          </ons-toolbar-button>
+          
+          <ons-toolbar-button onclick="showCalendarView()">
+            <ons-icon icon="ion-ios-calendar-outline" size="30px"></ons-icon>
+          </ons-toolbar-button>
+        
+        </div>
+        <div class="right">
+          <ons-toolbar-button onclick="showMenu(this)">
+            <ons-icon icon="ion-android-more-vertical" size="30px"></ons-icon>
+          </ons-toolbar-button>
+        </div>
+    </ons-toolbar>
+    
+        <!--<ons-pull-hook id="pull-hook">           
+        </ons-pull-hook>            -->
+    
+       <!-- <ons-row class="orange-bar home-sub-nav">
+	       <ons-col width="70px" >
+	         <p class="todays_date"></p>
+	       </ons-col>
+	       <ons-col width="70px" >
+	         <p class="duty_status"></p>
+	       </ons-col>
+	       
+	       <ons-col width="70px" >
+	          <ons-switch input-id="onduty" class="on-duty" onchange="changeDuty()"   ></ons-switch>
+	       </ons-col>
+	       
+	       <ons-col class="text-right">
+	         <span class="bold total_order_total concat-text"></span>
+	       </ons-col>	       
+	    </ons-row>-->
+    
+        <!--<div class="list-wrapper" id="task-wrapper">
+        </div>-->
+                
+        <!--<div class="no-task-wrap inner">
+          <ons-button modifier="quiet" onclick="getTodayTask()">
+            <ons-icon icon="ion-android-refresh" modifier="grey-icon" size="30px"></ons-icon>
+          </ons-button>
+          <p></p>
+        </div>-->
+        
+        <ons-tabbar id="tabbar_bottom"  position="bottom">
+        
+        <ons-tab page="pending_task_list.html">
+		  <input type="radio" style="display: none">
+		  <button class="tabbar__button">
+		    <div class="tabbar__icon">
+		      <ons-icon icon="md-view-day"></ons-icon>
+		    </div>
+		    <div class="tabbar__label trn" data-trn-key="pending_task" >Pending Task</div>    
+		  </button>
+		 </ons-tab>
+		 
+		<ons-tab page="completed_task_list.html">
+		  <input type="radio" style="display: none">
+		  <button class="tabbar__button">
+		    <div class="tabbar__icon">
+		      <ons-icon icon="md-view-web"></ons-icon>
+		    </div>
+		    <div class="tabbar__label trn" data-trn-key="completed_task" >Completed Task</div>    
+		  </button>
+		 </ons-tab> 
+	  
+        </ons-tabbar>
+    
+    </ons-page>
+    </ons-template>
+    
+    
+	<ons-popover direction="left" id="popover" cancelable >	  
+	  <ons-list>	    
+	    <ons-list-item modifier="normal-menu" tappable onclick="showPage('profilePage.html',1)" >
+	    <span class="trn" data-trn-key="profile" >Profile</span>
+	    </ons-list-item>
+	    
+	    <ons-list-item modifier="normal-menu" onclick="showPage('SettingPage.html',1)"  tappable>
+	    <span class="trn" data-trn-key="settings">Settings</span>
+	    </ons-list-item>
+	    
+	    <ons-list-item modifier="normal-menu" tappable onclick="Logout()">
+	    <span class="trn" data-trn-key="logout">Logout</span>
+	    </ons-list-item>
+	    
+	  </ons-list>	  
+	</ons-popover>
+	
+	
+	<ons-template id="taskDetails.html"> 
+    <ons-page id="taskDetails"  >
+    
+       <ons-toolbar modifier="ktransparent-toolbar">        
+         <div class="left"><ons-back-button onclick="reloadHome()"></ons-back-button></div>          
+         <div class="center toolbar-title"></div>
+       </ons-toolbar>
+       
+       <input type="hidden" name="task_id_global" class="task_id_global">
+       <input type="hidden" name="task_id_details" class="task_id_details">
+       
+       <div id="task-details" class="inner normal-inner list-wrapper">
+       
+       </div>   
+       
+     <ons-bottom-toolbar class="button-toolbar-action" id="task-action-wrap" >
+     </ons-bottom-toolbar>
+    
+    </ons-page>
+    </ons-template>
+    
+   
+    <ons-template id="viewTaskDescription.html"> 
+    <ons-page id="viewTaskDescription" modifier="grey-page"  >
+    
+       <ons-toolbar modifier="ktransparent-toolbar">        
+         <div class="left"><ons-back-button></ons-back-button></div>          
+         <div class="center toolbar-title"></div>
+       </ons-toolbar>
+       
+        <div class="list-wrapper" id="task-description">
+        </div>
+                
+    </ons-page>
+    </ons-template>
+    
+    
+   <ons-template id="reasonTask.html">
+      <ons-dialog id="reasonTask" cancelable > 
+              
+        <form id="frm-reasontask"  method="post" onsubmit="return false;"> 
+        <input type="hidden" name="reason_task_id" id="reason_task_id">
+        <input type="hidden" name="reason_status_raw" id="reason_status_raw">
+        <div class="inner">
+           <p class="field-wrap">
+             <ons-input type="text" id="reason" name="reason"            
+              modifier="underbar" placeholder="Add a reason..."  data-trn-key="add_reason"  float></ons-input>
+           </p>           
+           <p class="text-left"">
+           <ons-button modifier="large" onclick="AddReasonTask()" >
+            <span class="trn" data-trn-key="submit" >Submit</span>
+           </ons-button>          
+           </p>       
+           
+        </div>
+        </form>
+      
+      </ons-dialog>
+    </ons-template>    
+        
+   <ons-template id="Signature.html"> 
+    <ons-page id="Signature" modifier="grey-page" >
+	
+	
+       <ons-toolbar modifier="ktransparent-toolbar">        
+         <div class="left"><ons-back-button></ons-back-button></div>          
+         <div class="center toolbar-title-signature"></div>
+       </ons-toolbar>
+       
+       <div class="inner"> 
+       
+         <p class="field-wrap">
+         <!--<ons-input type="text" name="recipient_name" class="recipient_name trn"            
+         modifier="underbar" placeholder="Recipient name" data-trn-key="recipient_name" float></ons-input>-->
+                  
+          <ons-input id="recipient_name" class="recipient_name trn"  modifier="underbar" placeholder="Recipient name" float></ons-input>
+         </p>
+       
+         <div id="signature-pan"></div>
+         
+         <input type="hidden" name="task_id_signature" class="task_id_signature">
+         <input type="hidden" name="signature_id" class="signature_id">
+         
+         <p class="signature-action">
+           <ons-button modifier="large" onclick="AddSignatureToTask()" >
+            <span class="trn" data-trn-key="done" >Done</span>
+           </ons-button>          
+         </p>
+         <p class="signature-action">
+         <ons-button modifier="quiet" onclick="resetSignature();">
+           <span class="trn" data-trn-key="reset" >Reset</span>
+         </ons-button>
+         </p>
+       </div>
+              
+       
+	  </ons-page>
+    </ons-template>    
+    
+    
+    <ons-template id="CalendarView.html"> 
+    <ons-page id="CalendarView" >
+		
+       <ons-toolbar modifier="ktransparent-toolbar">        
+         <div class="left"><ons-back-button></ons-back-button></div>          
+         <div class="center toolbar-title-calendar trn" data-trn-key="calendar" >Calendar View</div>
+       </ons-toolbar>
+       
+       <div class="inner">     
+         <div id="calendar"></div>     
+       </div>              
+       
+	  </ons-page>
+    </ons-template>    
+    
+    <ons-template id="profilePage.html"> 
+    <ons-page id="profilePage" >
+		
+       <ons-toolbar modifier="toolbar-noshadow">        
+         <div class="left"><ons-back-button></ons-back-button></div>          
+         <div class="center toolbar-title-profile">
+         <span class="trn" data-trn-key="profile" >Profile</span>
+         </div>
+       </ons-toolbar>
+       
+       <div class="inner-profile">          
+         
+         <!--<ons-tabbar position="top">
+           <ons-tab page="profile.html" label="Personal" active="true" data-trn-key="personal" ></ons-tab>
+           <ons-tab page="vehicle.html" label="Vehicle" data-trn-key="vehicle" ></ons-tab>
+           <ons-tab page="changepassword.html" label="Password" data-trn-key="password" ></ons-tab>
+         </ons-tabbar>-->
+         
+         
+     <ons-tabbar id="tabbar_bottom"  position="top">
+        
+        <ons-tab page="profile.html">
+		  <input type="radio" style="display: none">
+		  <button class="tabbar__button">
+		    <div class="tabbar__icon">
+		      <ons-icon icon="ion-android-contact"></ons-icon>
+		    </div>
+		    <div class="tabbar__label trn" data-trn-key="personal" >Personal</div>    
+		  </button>
+		 </ons-tab>
+		 
+		<ons-tab page="vehicle.html">
+		  <input type="radio" style="display: none">
+		  <button class="tabbar__button">
+		    <div class="tabbar__icon">
+		      <ons-icon icon="ion-android-car"></ons-icon>
+		    </div>
+		    <div class="tabbar__label trn" data-trn-key="vehicle" >Vehicle</div>    
+		  </button>
+		 </ons-tab> 
+		 
+		<ons-tab page="changepassword.html">
+		  <input type="radio" style="display: none">
+		  <button class="tabbar__button">
+		    <div class="tabbar__icon">
+		      <ons-icon icon="ion-unlocked"></ons-icon>
+		    </div>
+		    <div class="tabbar__label trn" data-trn-key="password" >Password</div>    
+		  </button>
+		 </ons-tab>  
+		 
+    </ons-tabbar>
+                          
+       </div>              
+       
+	  </ons-page>
+    </ons-template>    
+    
+    <ons-template id="profile.html"> 
+    <ons-page id="profile" >
+    
+    <div class="profile-bg">
+      <div class="img_loader" id="img_loader_wrap">
+      
+        <div class="spinner">
+		  <div class="double-bounce1"></div>
+		  <div class="double-bounce2"></div>
+		</div>
+      
+         <img class="avatar" src=""/>
+      </div>
+    </div>
+    
+     <ons-fab position="top right" onclick="showDeviceGallery(1);">
+       <ons-icon icon="ion-image"></ons-icon>
+     </ons-fab>
+    
+      <div class="inner">
+      
+        <form id="frm-profile" class="forms"  method="post" onsubmit="return false;"> 
+           <div class="table">
+             <div class="col a border"><ons-icon icon="ion-android-contacts" size="30px"></ons-icon></div>
+             <div class="col border"> 
+               <b class="trn" data-trn-key="team" >Team</b>
+               <p class="team-name"></p>
+             </div>
+           </div>
+           
+           <div class="table top10">
+             <div class="col a border"><ons-icon icon="ion-android-contact" size="30px"></ons-icon></div>
+             <div class="col border"> 
+               <b class="trn" data-trn-key="name">Name</b>
+               <p class="driver-fullname"></p>
+             </div>
+           </div>
+           
+           <div class="table top10">
+             <div class="col a border"><ons-icon icon="ion-ios-email-outline" size="30px"></ons-icon></div>
+             <div class="col border"> 
+               <b class="trn" data-trn-key="email">Email</b>
+               <p class="driver-email"></p>
+             </div>
+           </div>
+           
+            <div class="table top10">
+             <div class="col a border"><ons-icon icon="ion-ios-telephone-outline" size="30px"></ons-icon></div>
+             <div class="col border"> 
+               <b class="trn" data-trn-key="contact" >Contact</b>
+               <p>
+               <ons-input type="text" name="phone" class="phone" modifier="underbar"></ons-input>
+               </p>
+             </div>
+           </div>
+           
+        </form>
+      
+      </div>
+    
+      <ons-bottom-toolbar class="button-toolbar-action2"> 
+         <ons-button modifier="large" onclick="UpdateForms('frm-profile','UpdateProfile')" >
+         <span class="trn" data-trn-key="update_profile" >Update Profile</span>
+         </ons-button>         
+      </ons-bottom-toolbar>
+      
+      </ons-page>
+    </ons-template>    
+    
+    <ons-template id="vehicle.html"> 
+    <ons-page id="vehicle" >
+    
+    <div class="profile-bg"></div>
+    
+      <div class="inner">
+        <form id="frm-vehicle" class="forms" method="post" onsubmit="return false;"> 
+        <!--<input type="hidden" name="transport_type_id" class="transport_type_id">-->
+           <div class="table">
+             <div class="col a border"><ons-icon icon="ion-android-car" size="30px"></ons-icon></div>
+             <div class="col border"> 
+               <b class="trn" data-trn-key="type" >Type</b>
+               <ons-list>
+                   <ons-list-item  >
+                   <!--<span class="transport_type_id2"></span>-->
+                    
+                   <div class="transport_wrap"></div>
+                   
+                   </ons-list-item>
+               </ons-list>
+             </div>
+           </div>
+           
+           <div class="table with-car">
+             <div class="col a border"></div>
+             <div class="col border"> 
+               <b class="trn" data-trn-key="description" >Description</b>
+               <p><ons-input type="text" name="transport_description" class="transport_description" modifier="underbar"></ons-input></p>  
+             </div>
+           </div>
+           
+           <div class="table with-car top10">
+             <div class="col a border"></div>
+             <div class="col border"> 
+               <b class="trn" data-trn-key="license_plate">License Plate</b>
+               <p><ons-input type="text" name="licence_plate" class="licence_plate" modifier="underbar"></ons-input></p>  
+             </div>
+           </div>
+           
+           <div class="table with-car top10">
+             <div class="col a border"></div>
+             <div class="col border"> 
+               <b class="trn"  data-trn-key="color"  >Color</b>
+               <p><ons-input type="text" name="color" class="color" modifier="underbar"></ons-input></p>  
+             </div>
+           </div>
+           
+        </form>   
+      </div>
+      
+       <ons-bottom-toolbar class="button-toolbar-action2"> 
+         <ons-button modifier="large" onclick="UpdateForms('frm-vehicle','UpdateVehicle')" >
+         <span class="trn" data-trn-key="update_vehicle" >Update Vehicle</span>
+         </ons-button>         
+      </ons-bottom-toolbar>
+    
+      </ons-page>
+    </ons-template> 
+    
+    <ons-template id="changepassword.html"> 
+    <ons-page id="changepassword" >
+    
+    <div class="profile-bg"></div>
+    
+      <div class="inner">      
+       <form id="frm-changepassword" class="forms" method="post" onsubmit="return false;"> 
+           <div class="table">
+             <div class="col a border"><ons-icon icon="ion-locked" size="30px"></ons-icon></div>
+             <div class="col border"> 
+               <b class="trn" data-trn-key="current_password">Current Password</b>
+               <p><ons-input type="password" name="current_pass" modifier="underbar"></ons-input></p> 
+             </div>
+           </div>
+           
+          <div class="table top10">
+             <div class="col a border"><ons-icon icon="ion-ios-locked-outline" size="30px"></ons-icon></div>
+             <div class="col border"> 
+               <b class="trn" data-trn-key="new_password">New Password</b>
+               <p><ons-input type="password" name="new_pass" modifier="underbar"></ons-input></p> 
+             </div>
+           </div>
+           
+           <div class="table top10">
+             <div class="col a border"><ons-icon icon="ion-ios-unlocked" size="30px"></ons-icon></div>
+             <div class="col border"> 
+               <b class="trn" data-trn-key="confirm_password" >Confirm Password</b>
+               <p><ons-input type="password" name="confirm_pass" modifier="underbar"></ons-input></p> 
+             </div>
+           </div>
+           
+      </form>     
+      </div>
+      
+       <ons-bottom-toolbar class="button-toolbar-action2"> 
+         <ons-button modifier="large" onclick="UpdateForms('frm-changepassword','ProfileChangePassword')" >
+         <span class="trn" data-trn-key="change_password" >Change Password</span>
+         </ons-button>         
+      </ons-bottom-toolbar>
+    
+      </ons-page>
+    </ons-template> 
+    
+    <ons-template id="transporType.html">
+      <ons-dialog id="transporType" cancelable > 
+
+     <div id="transport-list"></div>
+             
+      </ons-dialog>
+    </ons-template>    
+    
+    
+   <ons-template id="SettingPage.html"> 
+    <ons-page id="SettingPage" modifier="grey-page" >
+		
+       <ons-toolbar modifier="ktransparent-toolbar">        
+         <div class="left"><ons-back-button></ons-back-button></div>          
+         <div class="center toolbar-title-settings">
+          <span class="trn" data-trn-key="settings" >Settings</span>
+         </div>
+       </ons-toolbar>
+       
+       <div class="list-wrapper">
+         <ons-list>
+         
+            <ons-list-header class="top10 trn" data-trn-key="device_id" >Device ID</ons-list-header>            
+            <ons-list-item modifier="settings-list" >		      
+		      <ons-row>
+		         <ons-col><span class="device_id concat-text"></span></ons-col>
+		      </ons-row>
+		    </ons-list-item>
+         
+		    <ons-list-header>
+             <span class="trn" data-trn-key="software_version" >Software version</span>
+            </ons-list-header>   
+             <ons-list-item modifier="settings-list" >		      
+		      <ons-row>
+		         <ons-col><span class="software_version"></span></ons-col>
+		      </ons-row>
+		    </ons-list-item>
+		    
+            <ons-list-header>
+             <span class="trn" data-trn-key="notifications" >Notifications</span>
+            </ons-list-header>   
+                     
+            <ons-list-item modifier="settings-list">
+		      <div class="center">
+		        <span class="trn" data-trn-key="enabled_push" >Enabled Push Notification</span>
+		      </div>
+		      <div class="right">
+		        <ons-switch input-id="enabled_push" onchange="UpdatePush()"></ons-switch>
+		      </div>
+		    </ons-list-item>
+		    
+		    <ons-list-header class="top10 trn" data-trn-key="language" >Language</ons-list-header>            
+            <ons-list-item modifier="settings-list" tappable ripple onclick="ShowLanguageOption()" >
+		      <p><b class="trn" data-trn-key="select_language" >Select Language</b></p>		      
+		      <div class="table">
+		        <div class="col">
+		          <span class="language_selected"></span>
+		        </div>
+		      </div>
+		    </ons-list-item>
+            
+         </ons-list>
+       </div>         
+       
+	  </ons-page>
+    </ons-template>       
+    
+    
+   <ons-template id="LanguageList.html">
+      <ons-dialog id="LanguageList" cancelable > 
+
+     <div id="language-list"></div>
+             
+      </ons-dialog>
+    </ons-template>        
+    
+    
+    <ons-template id="OrderDetails.html">
+    <ons-page id="OrderDetails" modifier="grey-page" >
+		
+       <ons-toolbar modifier="ktransparent-toolbar">        
+         <div class="left"><ons-back-button></ons-back-button></div>          
+         <div class="center toolbar-title-orderdetails">
+          <span class="trn" data-trn-key="order_details" >Order Details</span>
+         </div>
+       </ons-toolbar>
+       
+       <div class="list-wrapper" id="order-details">
+       </div>
+         
+    </ons-page>   
+    </ons-template>        
+    
+    
+    <ons-template id="Notification.html">
+    <ons-page id="Notification" modifier="grey-page" >
+		
+       <ons-toolbar modifier="ktransparent-toolbar">        
+         <div class="left"><ons-back-button></ons-back-button></div>          
+         <div class="center toolbar-title-orderdetails">
+          <span class="trn" data-trn-key="notifications" >Notifications</span>
+         </div>
+         <div class="right clear_notification_wrap">           
+           <ons-toolbar-button onclick="callAjax('clearNofications')">
+            <span class="trn" data-trn-key="clear" >Clear</span>
+          </ons-toolbar-button>
+         </div>
+       </ons-toolbar>
+       
+       <ons-pull-hook id="pull-hook-notification">           
+       </ons-pull-hook>            
+       
+       <div class="list-wrapper" id="notifications-details">
+       </div>
+         
+    </ons-page>   
+    </ons-template> 
+    
+    
+    <ons-template id="Map.html">
+    <ons-page id="Map" modifier="map-page" >
+		
+       <ons-toolbar modifier="ktransparent-toolbar">        
+         <div class="left"><ons-back-button></ons-back-button></div>          
+         <div class="center">
+          <span class="trn" data-trn-key="map">Map</span>
+         </div>
+         
+         <div class="right">
+          
+         <ons-toolbar-button onclick="setMapCenter();">
+             <ons-icon icon="ion-ios-location-outline" size="30px"></ons-icon>
+           </ons-toolbar-button>
+           
+          <ons-toolbar-button onclick="getDirections();">
+            <ons-icon icon="ion-ios-navigate-outline" size="30px"></ons-icon>
+          </ons-toolbar-button>
+        </div>
+         
+       </ons-toolbar>
+       
+        <input type="hidden" name="task_lat" id="task_lat" >
+        <input type="hidden" name="task_lng" id="task_lng" >
+        
+        <input type="hidden" name="your_lat" id="your_lat" >
+        <input type="hidden" name="your_lng" id="your_lng" >
+        
+        <div id="map_canvas"></div> 
+       
+         
+    </ons-page>   
+    </ons-template> 
+     
+    
+   <ons-template id="Notes.html"> 
+    <ons-page id="Notes" modifier="grey-page"  >
+		
+       <ons-toolbar modifier="ktransparent-toolbar">        
+         <div class="left"><ons-back-button></ons-back-button></div>          
+         <div class="center toolbar-title-notes trn" data-trn-key="add_notes" >
+         Add Notes
+         </div>
+       </ons-toolbar>
+
+              
+       <div class="list-wrapper" id="list-notes" >       
+       </div>
+       
+       
+       <ons-bottom-toolbar class="button-toolbar-action2 add_notes_wrapper"> 
+       <div class="addnotes-wrapper">
+       <form id="frm-notes" class="frm-notes" method="post" onsubmit="return false;">
+       <input type="hidden" name="task_id" class="task_id">
+       <ons-row>      
+          <ons-col width="85%">
+             <ons-input type="text" name="notes" class="notes_fields" modifier="material" float></ons-input>
+          </ons-col>
+          <ons-col>
+              <ons-button modifier="quiet" onclick="addNotes();">
+                 <ons-icon icon="ion-android-send" style="color:grey;" size="20px"></ons-icon>
+              </ons-button>
+          </ons-col>
+       </ons-row>        
+                
+       
+       </form>
+       </div>
+       </ons-bottom-toolbar>
+                    
+	  </ons-page>
+    </ons-template>    
+
+    
+    <ons-popover direction="down" id="notes_popover" cancelable>	 
+    <input type="hidden" name="notes_id" class="notes_id"> 
+    <input type="hidden" name="notes_value" class="notes_value"> 
+      <ons-list>	    
+      
+	    <ons-list-item modifier="normal-menu" tappable onclick="editNotes()" >
+	    <span class="trn" data-trn-key="edit" >Edit</span>
+	    </ons-list-item>
+	    	    
+	    <ons-list-item modifier="normal-menu" tappable onclick="deleteNotes()">
+	    <span class="trn" data-trn-key="delete">Delete</span>
+	    </ons-list-item>
+	    
+	  </ons-list>	  
+    </ons-popover>
+    
+    
+    <ons-template id="editNotes.html">
+      <ons-dialog id="editNotes" cancelable > 
+
+        <form id="frm-editnotes"  method="post" onsubmit="return false;"> 
+        <div class="inner">
+        
+           <p class="field-wrap">
+             <ons-input type="text" name="edit_notes_fields" class="edit_notes_fields"            
+              modifier="underbar" float></ons-input>
+           </p>
+           
+           <p class="text-left"">
+           <ons-button modifier="large" onclick="updateNotes()" >
+           <span class="trn" data-trn-key="submit">Submit</span>
+           </ons-button>          
+           </p>       
+           
+        </div>
+        </form>
+             
+      </ons-dialog>
+    </ons-template>        
+    
+    
+     <ons-template id="trackDistanceDialog.html">
+      <ons-dialog id="trackDistanceDialog" cancelable > 
+ 
+      <div class="inner inner-left">   
+        <div class="distance_info">
+        </div>    
+      </div> 
+      
+      </ons-dialog>
+    </ons-template>       
+    
+    
+    <ons-template id="signup.html"> 
+    <ons-page id="signup" modifier="login-page"  >
+    
+       <ons-toolbar modifier="ktransparent-toolbar">        
+         <div class="left"><ons-back-button></ons-back-button></div>          
+       </ons-toolbar>
+       
+       <div class="home-header page-signup">
+          <span class="trn" data-trn-key="signup">Sign Up</span>
+       </div> 
+       
+       <div class="inner">   
+       
+         <form id="frm-signup"  method="post" onsubmit="return false;"> 
+         <!--<input type="hidden" name="transport_type_id" class="transport_type_id">-->
+         <p>
+         <ons-row>      
+            <ons-col class="col-margin field-wrap">
+              <ons-input type="text" name="first_name" modifier="underbar" class="first_name_fields"
+               placeholder="First Name" data-trn-key="first_name" float></ons-input>
+            </ons-col>
+            <ons-col class="field-wrap">
+               <ons-input type="text" name="last_name" modifier="underbar" class="last_name_fields"
+                placeholder="Last Name" data-trn-key="last_name" float></ons-input> 
+            </ons-col>
+         </ons-row>        
+         </p>          
+         
+         <p class="top30">
+         <ons-row>      
+            <ons-col class="col-margin field-wrap"> 
+              <ons-input type="text" name="email" modifier="underbar" class="email_address_field"
+               placeholder="Email" data-trn-key="email_address" float></ons-input>
+            </ons-col>
+            <ons-col class="field-wrap">
+               <ons-input type="text" name="phone" modifier="underbar" class="mobile_inputs"
+                 float></ons-input> 
+            </ons-col>
+         </ons-row>   
+         </p>
+         
+         <p class="top30">
+         <ons-row>      
+            <ons-col class="col-margin field-wrap">
+              <ons-input type="text" name="username" modifier="underbar" class="username_field"
+               placeholder="Username" data-trn-key="username" float></ons-input>
+            </ons-col>
+            <ons-col class="field-wrap">
+               <ons-input type="password" name="password" modifier="underbar" class="password_field"
+                 placeholder="Password" data-trn-key="password" float></ons-input> 
+            </ons-col>
+         </ons-row>   
+         </p>
+         
+         <p class="top30">
+         <div class="transport_wrap" style="background:#fff;padding:3px;"></div>
+         </p>
+         
+         <div class="with-car">
+	         <p class="top30">
+	         <ons-row>      
+	            <ons-col class="col-margin field-wrap">
+	              <ons-input type="text" name="transport_description" modifier="underbar" class="transport_description_field"
+	               placeholder="Transport Description (Year,Model)" data-trn-key="transport_description" float></ons-input>
+	            </ons-col>            
+	         </ons-row>   
+	         </p>
+	         
+	         <p class="top30">
+	         <ons-row>      
+	            <ons-col class="col-margin field-wrap">
+	              <ons-input type="text" name="licence_plate" modifier="underbar" class="licence_plate_field"
+	               placeholder="License Plate" data-trn-key="licence_plate" float></ons-input>
+	            </ons-col>
+	            <ons-col class="field-wrap">
+	               <ons-input type="text" name="color" modifier="underbar" class="color_field"
+	                 placeholder="Color" data-trn-key="color" float></ons-input> 
+	            </ons-col>
+	         </ons-row>   
+	         </p>
+         </div>
+         
+         <p class="text-left top40">
+            <ons-button modifier="large" onclick="signup()" >
+	           <span class="trn" data-trn-key="signup">Sign Up</span>
+	        </ons-button>          
+         </p>
+         
+         </form>
+       
+       </div>
+    
+    </ons-page>    
+    </ons-template>
+    
+    
+    <ons-modal id="uploadLoader" modifier="uploader">
+        <div class="inner">
+        <p class="bytes_send"></p>
+        <ons-progress-circular indeterminate></ons-progress-circular>
+        </div>
+    </ons-modal>
+    
+    
+   <ons-template id="addphotoSelection.html">
+      <ons-dialog id="addphotoSelection" cancelable > 
+              
+      <ons-list>	    
+      
+	    <ons-list-item modifier="normal-menu" tappable onclick="showCemara();" >
+	    <ons-icon icon="ion-ios-camera" size="25px"></ons-icon>
+	    <span style="margin-left:10px;"  class="trn" data-trn-key="take_picture" >Take Picture</span>
+	    </ons-list-item>
+	    
+	    <ons-list-item modifier="normal-menu" onclick="showDeviceGallery(2);"  tappable>
+	    <ons-icon icon="ion-image" size="20px"></ons-icon>
+	    <span style="margin-left:10px;" class="trn" data-trn-key="upload_picture">Upload Picture</span>
+	    </ons-list-item>
+	    	    
+	  </ons-list>	  
+	        
+      </ons-dialog>
+    </ons-template>        
+    
+    
+     <ons-template id="photoPage.html"> 
+    <ons-page id="photoPage" modifier="grey-page"  >
+		
+       <ons-toolbar modifier="ktransparent-toolbar">        
+         <div class="left"><ons-back-button></ons-back-button></div>          
+         <div class="center toolbar-title-notes trn" data-trn-key="photos" >
+         Photos
+         </div>
+       </ons-toolbar>
+
+              
+       <div class="list-photos" id="list-photos" >       
+       </div>
+                   
+       </div>
+       </ons-bottom-toolbar>
+                    
+	  </ons-page>
+    </ons-template>    
+    
+    
+   <ons-template id="map_dropoff.html">
+    <ons-page id="map_dropoff" modifier="map-page" >
+		
+       <ons-toolbar modifier="ktransparent-toolbar">        
+         <div class="left"><ons-back-button></ons-back-button></div>          
+         <div class="center">
+          <span class="trn" data-trn-key="map">Map</span>
+         </div>
+         
+         <div class="right">                    
+           <ons-toolbar-button onclick="setMapCenter();">
+             <ons-icon icon="ion-ios-location-outline" size="30px"></ons-icon>
+           </ons-toolbar-button>
+           
+           <ons-toolbar-button onclick="getDirectionsDropoff();">
+             <ons-icon icon="ion-ios-navigate-outline" size="30px"></ons-icon>
+           </ons-toolbar-button>
+         </div>
+         
+       </ons-toolbar>
+                     
+        <input type="hidden" name="driver_location_lat" id="driver_location_lat" class="driver_location_lat">  
+        <input type="hidden" name="driver_location_lng" id="driver_location_lng" class="driver_location_lng">  
+        <div id="map_canvas"></div> 
+       
+         
+    </ons-page>   
+    </ons-template> 
+    
+    
+    <ons-template id="pending_task_list.html">
+    <ons-page id="pending_task_list"  >
+     
+       <ons-pull-hook id="pull-hook">           
+       </ons-pull-hook>   
+       
+        <ons-row class="orange-bar home-sub-nav">
+	       <ons-col width="70px" >
+	         <p class="todays_date"></p>
+	       </ons-col>
+	       <ons-col width="70px" >
+	         <p class="duty_status"></p>
+	       </ons-col>
+	       
+	       <ons-col width="70px" >
+	          <ons-switch input-id="onduty" class="on-duty" onchange="changeDuty()"   ></ons-switch>
+	       </ons-col>
+	       
+	       <ons-col class="text-right">
+	         <span class="bold total_order_total concat-text"></span>
+	       </ons-col>	       
+	    </ons-row>
+       
+       <div class="list-wrapper" id="task-wrapper">
+       </div>
+    
+    </ons-page>   
+    </ons-template> 
+    
+    <ons-template id="completed_task_list.html">
+    <ons-page id="completed_task_list"  >
+    
+    
+      <ons-pull-hook id="pull-hook-completed">           
+      </ons-pull-hook>   
+    
+      <ons-row class="orange-bar home-sub-nav">
+	       <ons-col width="70px" >
+	         <p class="todays_date2"></p>
+	       </ons-col>
+	       <ons-col width="70px" >	         
+	       </ons-col>
+	       
+	       <ons-col width="70px" >	          
+	       </ons-col>
+	       
+	       <ons-col class="text-right">
+	         <span class="bold total_order_total2 concat-text"></span>
+	       </ons-col>	       
+	    </ons-row>
+    
+       <div class="list-wrapper" id="task_completed">         
+       </div>   
+    
+    </ons-page>   
+    </ons-template> 
+     
+    
+    
+  </body>
+</html>
