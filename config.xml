@@ -122,10 +122,10 @@
 	    <resource-file src="google-services.json" target="google-services.json" />
 	    <resource-file src="google-services.json" target="app/google-services.json" />
 	    
-		<icon density="ldpi" src="res/icons/android/drawable-ldpi-icon.png" />
-		<icon density="mdpi" src="res/icons/android/drawable-mdpi-icon.png" />
-		<icon density="hdpi" src="res/icons/android/drawable-hdpi-icon.png" />
-		<icon density="xhdpi" src="res/icons/android/drawable-xhdpi-icon.png" />
+		<icon density="ldpi" src="res/icons/android/drawable-ldpi-icon" />
+		<icon density="mdpi" src="res/icons/android/drawable-mdpi-icon" />
+		<icon density="hdpi" src="res/icons/android/drawable-hdpi-icon" />
+		<icon density="xhdpi" src="res/icons/android/drawable-xhdpi-icon" />
 		<icon density="xxhdpi" src="res/icons/android/drawable-xxhdpi-icon.png" />
 		<icon density="xxxhdpi" src="res/icons/android/drawable-xxxhdpi-icon.png" />
 		<splash density="land-ldpi" src="res/screens/android/drawable-land-ldpi-screen.png" />
