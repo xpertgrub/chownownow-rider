@@ -1,9 +1,9 @@
 /*Driver App Configuration*/
 
 var krms_driver_config ={			
-	'ApiUrl':"https://chownownow.com/driver/api",		
+	'ApiUrl':"https://www.chownownow.com/driver/api",		
 	'DialogDefaultTitle':"Chow Now Now Rider",
-	'mapboxToken' : 'pk.eyJ1IjoieHBlcnRncnViIiwiYSI6ImNqeTd3N2tubjAzanUzY3BidW9sbzgyNDgifQ.-TzPGX78yzXzfDCLwzUDCQ',
+	'mapboxToken' : 'pk.eyJ1IjoieHBlcnRncnViIiwiYSI6ImNqeXJkdHJxNDA0YWczY21rMG5nejZpcHYifQ.p5RIsTD22Uz4Oq4KDpWmLA',
 	'APIHasKey':"eHBlcnRncnVifGNob3dub3dub3dyaWRlcg",
 	'debug': false
 };

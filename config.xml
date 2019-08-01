@@ -8,10 +8,10 @@
     >
     <name>Chow Now Now Rider</name>
     <description>
-        Chow Now Now Rider App
+        Chow Now Now Delivery Riders App
     </description>
     <author email="xpertgrub@gmail.com" href="https://www.xpertgrub.com">
-        xpertgrub.com
+        Xpert Grub LLC
     </author>
     <icon src="icon.png" />           
     <content src="index.html" />
@@ -76,7 +76,7 @@
     
     <platform name="ios">    
 	    <config-file platform="ios" target="*-Info.plist" parent="NSLocationAlwaysUsageDescription">
-	        <string>Chow Now Now want to always use your location</string>
+	        <string>Chow Now Now wants to always use your location</string>
 	    </config-file>
 	    <config-file platform="ios" target="*-Info.plist" parent="NSLocationWhenInUseUsageDescription">
 	        <string>Chow Now Now wants to use your location</string>
@@ -91,19 +91,19 @@
 	</edit-config>
 	
 	<edit-config target="NSPhotoLibraryUsageDescription" file="*-Info.plist" mode="merge">
-	    <string>needs photo library access to get pictures</string>
+	    <string>needs photo library access to get pictures from there</string>
 	</edit-config>
 	
 	<edit-config target="NSLocationWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
-	    <string>need location access to find vendors nearby</string>
+	    <string>needs location access to find things nearby</string>
 	</edit-config>
 	
 	<edit-config target="NSLocationAlwaysAndWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
-	    <string>need location access to find vendors nearby</string>
+	    <string>needs location access to find things nearby</string>
 	</edit-config>
 	
 	<edit-config target="NSPhotoLibraryAddUsageDescription" file="*-Info.plist" mode="merge">
-	    <string>needs photo library access to save pictures</string>
+	    <string>needs photo library access to save pictures there</string>
 	</edit-config>
 	
 	<edit-config target="NSMicrophoneUsageDescription" file="*-Info.plist" mode="merge">
@@ -111,7 +111,7 @@
     </edit-config>
 			
     <edit-config target="NSLocationAlwaysUsageDescription" file="*-Info.plist" mode="merge">
-	    <string>need location access to find vendors nearby</string>
+	    <string>needs location access to find things nearby</string>
 	</edit-config>
 		
 	<platform name="android">
