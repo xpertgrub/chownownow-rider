@@ -13,7 +13,7 @@
     <author email="xpertgrub@gmail.com" href="https://www.xpertgrub.com">
         Xpert Grub LLC
     </author>
-    <icon src="icon.png" />           
+    <icon src="icon" />           
     <content src="index.html" />
                
 	<preference name="orientation" value="portrait" />	
