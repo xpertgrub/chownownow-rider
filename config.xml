@@ -70,7 +70,7 @@
     <gap:plugin name="cordova.plugins.diagnostic" source="npm" spec="3.7.3" />	
       
     <preference name="phonegap-version" value="cli-9.0.0" />
-    <preference name="android-minSdkVersion" value="22" />
+    <preference name="android-minSdkVersion" value="19" />
     <preference name="android-targetSdkVersion" value="28" />
     <preference name="DisallowOverscroll" value="true" />
     
