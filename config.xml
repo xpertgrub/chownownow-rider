@@ -13,7 +13,7 @@
     <author email="xpertgrub@gmail.com" href="https://www.xpertgrub.com">
         Xpert Grub LLC
     </author>
-    <icon src="icon.png" />           
+    <icon src="icon.png" target="app/src/main/res/mipmap/ic_launcher.png" />           
 	<resource-file src="res/icons/icon.png" target="app/src/main/res/mipmap/icon.png" />
 	<resource-file src="res/icons/icon.png" target="app/src/main/res/mipmap/ic_launcher.png" />
 	<resource-file src="res/icons/ic_launcher.png" target="app/src/main/res/mipmap/icon.png" />
