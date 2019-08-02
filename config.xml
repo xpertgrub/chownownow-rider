@@ -13,8 +13,7 @@
     <author email="xpertgrub@gmail.com" href="https://www.xpertgrub.com">
         Xpert Grub LLC
     </author>
-	<icon src="icon.png" />
-    <icon src="icon.png" target="/app/src/main/res/mipmap-ldpi/ic_launcher.png" />           	
+	<icon src="icon.png" />               	
     <content src="index.html" />
                
 	<preference name="orientation" value="portrait" />	
@@ -40,7 +39,7 @@
     <gap:plugin name="cordova-plugin-camera" source="npm" spec="4.0.3" />
     <gap:plugin name="cordova-plugin-file-transfer" source="npm" spec="1.7.1" /> 
         
-    <plugin name="cordova-plugin-mauron85-background-geolocation" spec="3.0.1">
+    <plugin name="@mauron85/cordova-plugin-background-geolocation" spec="3.0.3">
       <variable name="GOOGLE_PLAY_SERVICES_VERSION" value="11.0.1" />
 	  <variable name="ANDROID_SUPPORT_LIBRARY_VERSION" value="23+" />
 	  <variable name="ALWAYS_USAGE_DESCRIPTION" value="App requires background tracking enabled" />
@@ -122,6 +121,8 @@
 	    
 	    <resource-file src="google-services.json" target="google-services.json" />
 	    <resource-file src="google-services.json" target="app/google-services.json" />
+		
+		<resource-file src="logo.png" target="app/src/main/res/mipmap/icon.png" />
 	    
 		<icon density="ldpi" src="res/icons/android/drawable-ldpi-icon.png" />
 		<icon density="mdpi" src="res/icons/android/drawable-mdpi-icon.png" />
